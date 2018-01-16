@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfApp1.Model;
 using WpfApp1.Model.Repositories;
 
@@ -37,7 +26,10 @@ namespace WpfApp1
             txtFirstName.Text = "";
             txtLastName.Text = "";
             txtAges.Text = "";
+            ArtistId = 0;
         }
+
+
 
 
         private void PopulateGrid()
@@ -59,10 +51,8 @@ namespace WpfApp1
         {
             repo.Update(obj);
             repo.SaveChanges();
-            var data = repo.Get(obj.ArtistID);
-            PopulateGrid(); 
-            PopulateFields(data);
-           
+            PopulateFields(obj);
+            PopulateGrid();
         }
 
         private void DataGridData_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,7 +98,6 @@ namespace WpfApp1
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             ClearText();
-            ArtistId = 0;
         }
     }
 }
