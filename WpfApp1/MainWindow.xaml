@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="429.066" Width="525">
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition  MaxHeight="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"  Content="Administracion de Artistas"   HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,0,37,0" 
+               VerticalAlignment="Center" Grid.ColumnSpan="3" />
+
+        <Label Content="NOMBRE:" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Margin="5" Name="txtFirstName" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Height="30" />
+
+        <Label Content="APELLIDO:" Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Margin="5" Name="txtLastName" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"  VerticalAlignment="Center" Height="30" />
+
+        <Label Content="EDAD:" Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Margin="5" Name="txtAges" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1"  VerticalAlignment="Center" Height="30" />
+
+
+        <Button Name="BtnAdd" Grid.Row="4" Grid.Column="2" Content="Ingresar" Margin="98,5,8,5" Click="BtnAdd_Click"/>
+        <Button Name="BtnEdit" Grid.Row="4" Grid.Column="1" Content="Editar" Margin="198,5,127,5" Click="BtnEdit_Click" Grid.ColumnSpan="2"/>
+        <Button Name="BtnClear" Grid.Row="4" Grid.Column="1" Content="Limpiar" Margin="80,5,26,5" Click="BtnClear_Click"/>
+
+        <DataGrid Name="DataGridData" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource="{Binding}" 
+                  SelectionMode="Single" Grid.Row="5" Grid.ColumnSpan="3" SelectionChanged="DataGridData_SelectionChanged">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding id}" Visibility="Collapsed"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="150" />
+                <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}" Width="150" />
+                <DataGridTextColumn Header="Edad" Width="*" Binding="{Binding Age}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Window>
