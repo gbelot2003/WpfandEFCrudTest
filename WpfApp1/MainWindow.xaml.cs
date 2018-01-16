@@ -29,9 +29,6 @@ namespace WpfApp1
             ArtistId = 0;
         }
 
-
-
-
         private void PopulateGrid()
         {
             var result = repo.GetList();
@@ -40,18 +37,16 @@ namespace WpfApp1
 
         private void PopulateFields(Artis obj)
         {
-            var result = repo.Get(obj.ArtistID);
-            txtFirstName.Text = result.Name;
-            txtLastName.Text = result.LastName;
-            txtAges.Text = result.Age.ToString();
-            this.ArtistId = result.ArtistID;
+            txtFirstName.Text = obj.Name;
+            txtLastName.Text = obj.LastName;
+            txtAges.Text = obj.Age.ToString();
+            this.ArtistId = obj.ArtistID;
         }
 
         private void EditArtist(Artis obj)
         {
-            repo.Update(obj);
-            repo.SaveChanges();
-            PopulateFields(obj);
+            Artis data = repo.Update(obj);
+            PopulateFields(data);
             PopulateGrid();
         }
 
